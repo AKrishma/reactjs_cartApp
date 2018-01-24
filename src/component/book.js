@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default class Book extends React.Component {
     constructor(props) {
         super(props);
-        this.handleAddToCart = this.handleAddToCart.bind(this)
+       // this.handleAddToCart = this.handleAddToCart.bind(this)
         this.styles = {
             outerDiv : { margin: '10px', padding: '15px', background: '#fcf', display: 'inline-grid' },
             price : { padding: '10px', background: '#00f', color: '#fff'},

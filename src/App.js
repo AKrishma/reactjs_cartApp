@@ -5,10 +5,7 @@ import './App.css';
 import Book from './component/book';
 import Cart from './component/Cart';
 
-/*
-  - data Binding
-  -
-*/
+
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +13,7 @@ class App extends Component {
 
     this.state = {
         myText: "React session",
-       // myBookColln : books,
+        myBookColln : [],
         myCart: []
     }
     this.styles = {
@@ -25,20 +22,12 @@ class App extends Component {
   }
 
   //this.handleChange = handleChange.bind(this);
-  /* componentDidMount() {
-    // server side communication or to load the data properlu, which hasto be  presented.
-    setTimeout(() => {
-      let books = [
-        {title: 'Data modeling architechture', Price: '1500' },
-        {title: 'The Mind map' , Price: '2500'},
-        {title: 'Introduction to General stystem Thinking', Price: '6000' },
-        {title: 'The Flow Theory', Price: '2000' }
-      ]
+  displaybooks =(e) => {
+      
       this.setState({
-
+       // book: {books}
       })
-    },3000);
-  } */
+  } 
   handleChange = (e) => {
     this.setState({
       myText: e.target.value
@@ -51,7 +40,26 @@ class App extends Component {
       myCart: cart
     }) 
   }
-
+  displayBooks =(props) => {
+    let booklist, myBookColln = [
+      {title: 'Data modeling architechture', Price: '1500' },
+      {title: 'The Mind map' , Price: '2500'},
+      {title: 'Introduction to General stystem Thinking', Price: '6000' },
+      {title: 'The Flow Theory', Price: '2000' }
+    ];
+    const books = props.books;
+    (myBookColln.length)>0 ? 
+      booklist = myBookColln.map(books, index => {
+      return (
+        <Book key={index} data= {this.props.book} onAddToCart={this.handleAddToCart} />
+      )
+    }):'Loading...!'
+      return (
+        booklist
+      );
+  }
+  
+  
   render() {
     return (
       <div className="App">
@@ -64,25 +72,31 @@ class App extends Component {
         <p> you said: {this.state.myText}</p>
         </div>
         <div>
-           <Book data={{title: 'Data modeling architechture', Price: '1500' }} onAddToCart={this.handleAddToCart}/>
-          <Book data={{title: 'The Mind map' , Price: '2500'}} />
-          <Book data={{title: 'Introduction to General stystem Thinking', Price: '6000' }} />
-          <Book data={{title: 'The Flow Theory', Price: '2000' }} /> 
-        {/*   {
+         <Book data={{title: 'Data modeling architechture', Price: '1500' }} onAddToCart={this.handleAddToCart}/>
+          <Book data={{title: 'The Mind map' , Price: '2500'}} onAddToCart={this.handleAddToCart} />
+          <Book data={{title: 'Introduction to General stystem Thinking', Price: '6000' }} onAddToCart={this.handleAddToCart} />
+          <Book data={{title: 'The Flow Theory', Price: '2000' }}  onAddToCart={this.handleAddToCart} />  
+          {/*  {
             (this.state.myBookColln.length)>0 ? 
-            this.state.myBookColln.map(book,index) => {
+            this.state.myBookColln.map(book, index => {
               return (
-                <Book data= {book} onAddToCart={this.handleAddToCart} />
+                <Book data= {this.props.book} onAddToCart={this.handleAddToCart} />
               )
             }):'Loading...!'
-          } */}
+          }  
+
+          <displayBooks  books= {myBookColln} /> */}
         </div>
       <div>
-        {`You have ${this.state.myCart.length} number of checkout`}
+        {`You have selected ${this.state.myCart.length} Books for checkout`}
       </div>
       <div>
         <Cart item={this.state.myCart} />
       </div>
+     {/*  <div>
+      
+        <FilterableProductTable products={PRODUCTS} />
+      </div> */}
         
       </div>
     );
