@@ -24,7 +24,12 @@ export default class Book extends React.Component {
     return(
         <div style= {this.styles.outerDiv}>
             <h3>{this.props.data.title}</h3>
+            <p style={this.styles.price}>{this.props.data.author}</p>
             <p style={this.styles.price}>{this.props.data.Price}</p>
+            <p style={this.styles.price}>{this.props.data.publisher}</p>
+            <p style={this.styles.price}>{this.props.data.publish_year}</p>
+            <p style={this.styles.price}>{this.props.data.quantity}</p>
+            
             <button style={this.styles.btnstyle} onClick={this.handleAddToCart} > {'Add to Cart'} </button>
         </div>
     );

@@ -19,15 +19,10 @@ class App extends Component {
     this.styles = {
        wrapDiv: { margin: '10px', padding: '5px', background: '#ccc'}
     }
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  //this.handleChange = handleChange.bind(this);
-  displaybooks =(e) => {
-      
-      this.setState({
-       // book: {books}
-      })
-  } 
+
   handleChange = (e) => {
     this.setState({
       myText: e.target.value
@@ -42,10 +37,10 @@ class App extends Component {
   }
   displayBooks =(props) => {
     let booklist, myBookColln = [
-      {title: 'Data modeling architechture', Price: '1500' },
-      {title: 'The Mind map' , Price: '2500'},
-      {title: 'Introduction to General stystem Thinking', Price: '6000' },
-      {title: 'The Flow Theory', Price: '2000' }
+      {title: 'Data modeling architechture', author:'', Price: '1500', publisher: '', publish_year: '', quantity: '5'  },
+      {title: 'The Mind map' ,author:'', Price: '2500', publisher: '', publish_year: '', quantity: '6' },
+      {title: 'Introduction to General stystem Thinking',author:'', Price: '6000', publisher: '', publish_year: '',quantity: '10'  },
+      {title: 'The Flow Theory', author:'',Price: '2000', publisher: '', publish_year: '',quantity: '7'  }
     ];
     const books = props.books;
     (myBookColln.length)>0 ? 
@@ -55,7 +50,7 @@ class App extends Component {
       )
     }):'Loading...!'
       return (
-        booklist
+       {booklist} 
       );
   }
   
@@ -72,10 +67,10 @@ class App extends Component {
         <p> you said: {this.state.myText}</p>
         </div>
         <div>
-         <Book data={{title: 'Data modeling architechture', Price: '1500' }} onAddToCart={this.handleAddToCart}/>
-          <Book data={{title: 'The Mind map' , Price: '2500'}} onAddToCart={this.handleAddToCart} />
-          <Book data={{title: 'Introduction to General stystem Thinking', Price: '6000' }} onAddToCart={this.handleAddToCart} />
-          <Book data={{title: 'The Flow Theory', Price: '2000' }}  onAddToCart={this.handleAddToCart} />  
+          {/* <Book data={{title: 'Data modeling architechture', author:'', Price: '1500', publisher: '', publish_year: '', quantity: '5' }} onAddToCart={this.handleAddToCart}/>
+          <Book data={{title: 'The Mind map' ,author:'', Price: '2500', publisher: '', publish_year: '', quantity: '6' }} onAddToCart={this.handleAddToCart} />
+          <Book data={{title: 'Introduction to General stystem Thinking',author:'', Price: '6000', publisher: '', publish_year: '', quantity: '10'  }} onAddToCart={this.handleAddToCart} />
+          <Book data={{title: 'The Flow Theory', author:'',Price: '2000', publisher: '', publish_year: '', quantity: '7'  }}  onAddToCart={this.handleAddToCart} />   */}
           {/*  {
             (this.state.myBookColln.length)>0 ? 
             this.state.myBookColln.map(book, index => {
@@ -84,8 +79,8 @@ class App extends Component {
               )
             }):'Loading...!'
           }  
-
-          <displayBooks  books= {myBookColln} /> */}
+*/}
+          <displayBooks  books= {books} /> 
         </div>
       <div>
         {`You have selected ${this.state.myCart.length} Books for checkout`}
