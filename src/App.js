@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
 import Book from './component/book';
 import Cart from './component/Cart';
-
-
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +19,6 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-
   handleChange = (e) => {
     this.setState({
       myText: e.target.value
@@ -35,25 +31,19 @@ class App extends Component {
       myCart: cart
     }) 
   }
-  displayBooks =(props) => {
-    let booklist, myBookColln = [
-      {title: 'Data modeling architechture', author:'', Price: '1500', publisher: '', publish_year: '', quantity: '5'  },
-      {title: 'The Mind map' ,author:'', Price: '2500', publisher: '', publish_year: '', quantity: '6' },
-      {title: 'Introduction to General stystem Thinking',author:'', Price: '6000', publisher: '', publish_year: '',quantity: '10'  },
-      {title: 'The Flow Theory', author:'',Price: '2000', publisher: '', publish_year: '',quantity: '7'  }
-    ];
-    const books = props.books;
+  DisplayBooks =(props) => {
+    let booklist;
+    console.log(props.books);
     (myBookColln.length)>0 ? 
-      booklist = myBookColln.map(books, index => {
+      booklist = props.books.map((book) => {
       return (
-        <Book key={index} data= {this.props.book} onAddToCart={this.handleAddToCart} />
+        <Book data= {book} onAddToCart={this.handleAddToCart} />
       )
     }):'Loading...!'
       return (
        {booklist} 
       );
   }
-  
   
   render() {
     return (
@@ -67,20 +57,15 @@ class App extends Component {
         <p> you said: {this.state.myText}</p>
         </div>
         <div>
-          {/* <Book data={{title: 'Data modeling architechture', author:'', Price: '1500', publisher: '', publish_year: '', quantity: '5' }} onAddToCart={this.handleAddToCart}/>
+          <Book data={{title: 'Data modeling architechture', author:'', Price: '1500', publisher: '', publish_year: '', quantity: '5' }} onAddToCart={this.handleAddToCart}/>
           <Book data={{title: 'The Mind map' ,author:'', Price: '2500', publisher: '', publish_year: '', quantity: '6' }} onAddToCart={this.handleAddToCart} />
           <Book data={{title: 'Introduction to General stystem Thinking',author:'', Price: '6000', publisher: '', publish_year: '', quantity: '10'  }} onAddToCart={this.handleAddToCart} />
-          <Book data={{title: 'The Flow Theory', author:'',Price: '2000', publisher: '', publish_year: '', quantity: '7'  }}  onAddToCart={this.handleAddToCart} />   */}
-          {/*  {
-            (this.state.myBookColln.length)>0 ? 
-            this.state.myBookColln.map(book, index => {
-              return (
-                <Book data= {this.props.book} onAddToCart={this.handleAddToCart} />
-              )
-            }):'Loading...!'
-          }  
-*/}
-          <displayBooks  books= {books} /> 
+          <Book data={{title: 'The Flow Theory', author:'',Price: '2000', publisher: '', publish_year: '', quantity: '7'  }}  onAddToCart={this.handleAddToCart} />
+         
+
+    
+          {/* <DisplayBooks  books= {myBookColln} /> 
+          <Book data={{title: 'The Mind map1' ,author:'', Price: '2500', publisher: '', publish_year: '', quantity: '6' }} onAddToCart={this.handleAddToCart} /> */}
         </div>
       <div>
         {`You have selected ${this.state.myCart.length} Books for checkout`}
@@ -97,5 +82,10 @@ class App extends Component {
     );
   }
 }
-
+const myBookColln = [
+  {title: 'Data modeling architechture', author:'', Price: '1500', publisher: '', publish_year: '', quantity: '5'  },
+  {title: 'The Mind map' ,author:'', Price: '2500', publisher: '', publish_year: '', quantity: '6' },
+  {title: 'Introduction to General stystem Thinking',author:'', Price: '6000', publisher: '', publish_year: '',quantity: '10'  },
+  {title: 'The Flow Theory', author:'',Price: '2000', publisher: '', publish_year: '',quantity: '7'  }
+];  
 export default App;
